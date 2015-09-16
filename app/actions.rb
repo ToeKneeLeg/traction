@@ -48,3 +48,10 @@ get '/log_out' do
   session.delete(:member_id)
   redirect '/'
 end
+
+get '/dashboard' do
+  @project = Project.first
+  @tasks = Task.all
+  @unassigned = Task.where(member_id: nil)
+  erb :'dashboard/show'
+end
