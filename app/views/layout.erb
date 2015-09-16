@@ -15,9 +15,19 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/javascript/application.js"></script>
 
-  <title></title>
+  <title>Traction - Get Things Done</title>
 </head>
 <body>
+  <div class="nav">
+    <ul>
+      <% if !session[:member_id] %>
+        <li><a href="/register">Register</a></li>
+      <% else %>
+        <li><%= @member.first_name %> <%= @member.last_name %></li>
+        <li><a href="/log_out">Log Out</a></li>
+      <% end %>
+    </ul>
+  </div>
   <%= yield %>
 </body>
 </html>
