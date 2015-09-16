@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150916194921) do
+ActiveRecord::Schema.define(version: 20150916215232) do
+
+  create_table "member_skills", force: :cascade do |t|
+    t.integer "member_id"
+    t.integer "skill_id"
+  end
 
   create_table "members", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.string   "skill_one"
-    t.string   "skill_two"
-    t.string   "skill_three"
-    t.string   "skill_four"
-    t.string   "skill_five"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -31,6 +31,10 @@ ActiveRecord::Schema.define(version: 20150916194921) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "tasks", force: :cascade do |t|
