@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150916191929) do
+ActiveRecord::Schema.define(version: 20150916194921) do
 
   create_table "members", force: :cascade do |t|
     t.string   "first_name"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150916191929) do
     t.string   "required_skill"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "completed"
   end
 
 end
