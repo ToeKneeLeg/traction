@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20150916194921) do
     t.string   "required_skill"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "completed"
+    t.boolean  "completed",      default: false
   end
 
 end
