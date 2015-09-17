@@ -5,18 +5,27 @@
 <h1><%= @project.name %></h1>
 
 <p>
-  Description: <%= @project.description %>
+  Description: <%= @project.try(:description) %>
 </p>
 
 <div class="tasks">
-  <h3>Tasks:</h3>
-  <% @tasks.each do |task| %>
-    <% if task.member_id != nil %>
+  <h3>Tasks:</h3>  
+    <form method="post" action="/dashboard/<%=@project.id%>/update"> 
+      <% @tasks.each do |task| %>
+        <% if task.member_id != nil && task.completed == false %>
+          <div>
+            <input type="radio" name="task_completed" value="<%= task.id%>">
+            <strong><%= task.description %></strong> <small>Assigned to: <%= "#{task.member.try(:first_name)} #{task.member.try(:last_name)}" %></small><br><br>
+          </div>
+        <% end %>
+      <% end %>
       <div>
-        <h4><%= task.description %> <small>(Required skills: <%= task.required_skill %>)</small> Assigned to: <%= "#{task.member.first_name} #{task.member.last_name}" %></h4>
+        <input type="submit" value="Update Completed Task">
       </div>
-    <% end %>
-  <% end %>
+       <div>
+        <input type="hidden" name ="projectid" value="<%= @project.id %>">
+      </div>
+    </form>    
 </div>
 <br>
 
@@ -24,26 +33,38 @@
   <h3>Unassigned Tasks:</h3>
   <% @unassigned.each do |task| %>
     <div>
-      <h4><%= task.description %> <small>(Required skills: <%= task.required_skill %>)</small></h4>
+      <h4><%= task.try(:description) %> <small>(Required skills: <%= task.try(:required_skill) %>)</small></h4>
     </div>
   <% end %>
 </div>
 
-<form method="post" action="/dashboard">
+<form method="post" action="/dashboard/<%=@project.id%>">
+  <div>
+    <lable>Task Description:</lable>
+    <input type="text" name="description">
+  </div>
+  <div>
+    <label>Required Skill:</label>
+    <select name="drop_down_required_skill">
+      <option selected="selected">Select a required skill</option>
+      <% @tasks.each do |task| %>
+        <option value="<%=task.description%>"><%=task.description%></option>
+      <% end %>
+        <option>Not listed? Create one below</option>
+    </select>
+  </div>
+  <div>
+    <label>Create a new required skill that's not on the list</label>
+    <input type="text" name="required_skill">
+  </div>
   <div>
     <input type="submit" value="Add Task">
   </div>
   <div>
-    <input type="hidden" value="@project.id">
+    <input type="hidden" name ="projectid" value="<%= @project.id %>">
   </div>
 </form>
 
-<form method="post" action="/dashboard">
-  <div>
-    <input type="submit" value="Add Member to Project">
-  </div>
-  <div>
-    <input type="hidden" value="@project.id">
-  </div>
-</form>
-
+<div>
+  <a href="/dashboard">Back to other projects</a>
+</div>

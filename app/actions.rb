@@ -1,4 +1,4 @@
-# Homepage (Root path)
+# # Homepage (Root path)
 get '/' do
   if session[:member_id]
     @member = Member.find(session[:member_id])
@@ -114,9 +114,40 @@ get '/log_out' do
   redirect '/'
 end
 
-get '/dashboard' do
-  @project = Project.first
-  @tasks = Task.all
-  @unassigned = Task.where(member_id: nil)
+get '/dashboard/:id' do
+  @member = Member.find(session[:member_id])
+  @project = Project.find params[:id]
+  @tasks = @project.tasks
+  @unassigned = @project.tasks.where(member_id: nil)
   erb :'dashboard/show'
+end
+
+#to update completed tasks
+#cannot use put in form so we use post to another end point
+post '/dashboard/:id/update' do
+  @project = Project.find(params[:projectid])
+  @task = Task.find(params[:task_completed])
+  @task.update(completed: true)
+
+  redirect "dashboard/#{params[:projectid]}"
+end
+
+#to add a new task
+post '/dashboard/:id' do
+  @project = Project.find(params[:projectid])
+  @tasks = @project.tasks
+  @member = Member.find(session[:member_id])
+  @unassigned = @project.tasks.where(member_id: nil)
+  @new_task = Task.create(project_id: params[:projectid],
+                          # member_id: @member.id,
+                          description: params[:description],
+                          required_skill: params[:drop_down_required_skill]
+                          )
+  if @new_task.valid?
+    redirect "dashboard/#{params[:projectid]}"
+  else
+    @new_task.required_skill = params[:required_skill]
+    @new_task.save
+    redirect "dashboard/#{params[:projectid]}"
+  end
 end
