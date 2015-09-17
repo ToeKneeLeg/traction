@@ -11,7 +11,7 @@
       <div>
         <form method="post" action="/update_task">
           <input type="checkbox" name="<%= task.completed %>" value="true">
-              <strong><%= task.description %></strong> <small>(Required skills: <%= task.required_skill %>)</small> Assigned to: <%= "#{task.member.try(:first_name)} #{task.member.try(:last_name)}" %>
+              <strong><%= task.description %></strong> <small>Assigned to: <%= "#{task.member.try(:first_name)} #{task.member.try(:last_name)}" %></small><br><br>
         </form>
       </div>
     <% end %>
@@ -45,12 +45,6 @@
   </div>
 </form>
 
-<form method="post" action="/dashboard">
-  <div>
-    <input type="submit" value="Add Member to Project">
-  </div>
-  <div>
-    <input type="hidden" value="@project.id">
-  </div>
-</form>
-<!-- <a href="/tracks">Back to other projects</a> -->
+<div>
+  <a href="/dashboard">Back to other projects</a>
+</div>
