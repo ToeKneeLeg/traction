@@ -74,11 +74,16 @@ post '/dashboard/:id' do
   @tasks = @project.tasks
   @member = Member.find(session[:member_id])
   @unassigned = @project.tasks.where(member_id: nil)
-  @new_task = Task.create!(project_id: params[:projectid],
+  @new_task = Task.create(project_id: params[:projectid],
                           member_id: @member.id,
                           description: params[:description],
-                          required_skill: params[:required_skill]
+                          required_skill: params[:drop_down_required_skill]
                           )
-
-  redirect "dashboard/#{params[:projectid]}"
+  if @new_task.valid?
+    redirect "dashboard/#{params[:projectid]}"
+  else
+    @new_task.required_skill = params[:required_skill]
+    @new_task.save
+    redirect "dashboard/#{params[:projectid]}"
+  end
 end

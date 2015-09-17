@@ -39,8 +39,18 @@
     <lable>Task Description:</lable>
     <input type="text" name="description">
   </div>
-   <div>
+  <div>
     <label>Required Skill:</label>
+    <select name="drop_down_required_skill">
+      <option selected="selected">Select a required skill</option>
+      <% @tasks.each do |task| %>
+        <option value="<%=task.id%>"><%=task.description%></option>
+      <% end %>
+        <option>Not listed? Create one below</option>
+    </select>
+  </div>
+  <div>
+    <label>Create a new required skill that's not on the list</label>
     <input type="text" name="required_skill">
   </div>
   <div>
