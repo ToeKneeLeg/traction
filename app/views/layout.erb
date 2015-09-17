@@ -20,10 +20,11 @@
 <body>
   <div class="nav">
     <ul>
+      <li><a href="/">Traction</a></li>
       <% if !session[:member_id] %>
         <li><a href="/register">Register</a></li>
       <% else %>
-        <li><%= @member.first_name %> <%= @member.last_name %></li>
+        <li><a href="/dashboard"><%= @member.first_name %> <%= @member.last_name %></a></li>
         <li><a href="/log_out">Log Out</a></li>
       <% end %>
     </ul>

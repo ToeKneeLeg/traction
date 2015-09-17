@@ -1,4 +1,8 @@
-<h1><%= @project.try(:name) %></h1>
+
+<h1><%= @project.name %></h1>
+<h2><%= @project.description %></h2>
+<p><a href="/dashboard">Back to projects.</a></p>
+<h1><%= @project.name %></h1>
 
 <p>
   Description: <%= @project.try(:description) %>
