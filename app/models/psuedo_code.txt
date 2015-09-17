@@ -1,0 +1,4 @@
+-When a task is initialized it will scan the member's table  and collect all member ids and place them in a variable mem_list
+-For each value in mem_list it will check member.member_task
+-If member.member_task = nil it will check to see if member.member_skill includes self.required skill
+-If member.member_skill = required skill. The instantiated task's task.member.id = member.id
