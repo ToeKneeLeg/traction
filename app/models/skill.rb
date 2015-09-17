@@ -1,4 +1,4 @@
-class Skill
+class Skill < ActiveRecord::Base
 
 
 end

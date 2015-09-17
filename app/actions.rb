@@ -45,6 +45,7 @@ get '/member/:id' do
     @member = Member.find(session[:member_id])
   end
   @team_member = Member.find(params[:id])
+  @skills = @team_member.member_skills.all
   erb :'/member/show'
 end
 

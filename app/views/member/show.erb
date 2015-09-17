@@ -1,1 +1,9 @@
-<h1></h1>
+<h1><%= @team_member.first_name %> <%= @team_member.last_name %></h1>
+<h2><%= @team_member.email %></h2>
+<h3>Tasks Assigned</h3>
+<h3>Skills</h3>
+  <% @skills.each do |skilly| %>
+  	<p><%= skilly.skill.name %></p>
+  <% end %>
+
+  <a href="/dashboard">Back to dashboard</a>
