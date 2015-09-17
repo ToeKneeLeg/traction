@@ -59,7 +59,7 @@ get '/dashboard/:id' do
 end
 
 ############to test the add task button. to be replaced by algorithm
-post '/add_task' do
+post '/dashboard/:id' do
   @project = Project.find(params[:projectid])
   @tasks = @project.tasks
   @member = Member.find(session[:member_id])
@@ -70,5 +70,5 @@ post '/add_task' do
                           required_skill: params[:required_skill]
                           )
 
-  erb :'dashboard/show'
+  redirect "dashboard/#{params[:projectid]}"
 end

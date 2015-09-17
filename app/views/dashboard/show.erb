@@ -28,7 +28,7 @@
   <% end %>
 </div>
 
-<form method="post" action="/add_task">
+<form method="post" action="/dashboard/<%=@project.id%>">
   <div>
     <lable>Task Description:</lable>
     <input type="text" name="description">
