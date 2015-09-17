@@ -5,17 +5,21 @@
 </p>
 
 <div class="tasks">
-  <h3>Tasks:</h3>
-  <% @tasks.each do |task| %>
-    <% if task.member_id != nil %>
-      <div>
-        <form method="post" action="/update_task">
-          <input type="checkbox" name="<%= task.completed %>" value="true">
-              <strong><%= task.description %></strong> <small>Assigned to: <%= "#{task.member.try(:first_name)} #{task.member.try(:last_name)}" %></small><br><br>
-        </form>
+  <h3>Tasks:</h3>  
+    <form method="post" action="/dashboard/<%=@project.id%>/update"> 
+      <% @tasks.each do |task| %>
+        <% if task.member_id != nil && task.completed == false %>
+          <div>
+            <input type="radio" name="task_completed" value="<%= task.id%>">
+            <strong><%= task.description %></strong> <small>Assigned to: <%= "#{task.member.try(:first_name)} #{task.member.try(:last_name)}" %></small><br><br>
+          </div>
+        <% end %>
+      <% end %>
+      <input type="submit" value="Update Taskes">
+       <div>
+      <input type="hidden" name ="projectid" value="<%= @project.id %>">
       </div>
-    <% end %>
-  <% end %>
+    </form>    
 </div>
 <br>
 

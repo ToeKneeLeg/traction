@@ -58,13 +58,23 @@ get '/dashboard/:id' do
   erb :'dashboard/show'
 end
 
+post '/dashboard/:id/update' do
+  @project = Project.find(params[:projectid])
+  @task = Task.find(params[:task_completed])
+  @task.completed = true
+  @task.save
+  redirect "dashboard/#{params[:projectid]}"
+end
+
+
+#to add a new task
 post '/dashboard/:id' do
   @project = Project.find(params[:projectid])
   @tasks = @project.tasks
   @member = Member.find(session[:member_id])
   @unassigned = @project.tasks.where(member_id: nil)
   @new_task = Task.create!(project_id: params[:projectid],
-                          # member_id: @member.id,
+                          member_id: @member.id,
                           description: params[:description],
                           required_skill: params[:required_skill]
                           )
