@@ -75,7 +75,7 @@ post '/dashboard/:id' do
   @member = Member.find(session[:member_id])
   @unassigned = @project.tasks.where(member_id: nil)
   @new_task = Task.create(project_id: params[:projectid],
-                          member_id: @member.id,
+                          # member_id: @member.id,
                           description: params[:description],
                           required_skill: params[:drop_down_required_skill]
                           )

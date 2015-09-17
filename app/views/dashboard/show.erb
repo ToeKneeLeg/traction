@@ -44,7 +44,7 @@
     <select name="drop_down_required_skill">
       <option selected="selected">Select a required skill</option>
       <% @tasks.each do |task| %>
-        <option value="<%=task.id%>"><%=task.description%></option>
+        <option value="<%=task.description%>"><%=task.description%></option>
       <% end %>
         <option>Not listed? Create one below</option>
     </select>
