@@ -40,13 +40,21 @@ post '/register' do
   end
 end
 
+get '/member/:id' do
+  if session[:member_id]
+    @member = Member.find(session[:member_id])
+  end
+  @team_member = Member.find(params[:id])
+  erb :'/member/show'
+end
+
 get '/dashboard' do
   if session[:member_id]
     @member = Member.find(session[:member_id])
   else
     redirect '/register'
   end
-  @members = Member.all
+  @team_members = Member.all
   @projects = Project.all
   erb :'dashboard/index'
 end

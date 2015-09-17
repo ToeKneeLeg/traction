@@ -4,17 +4,28 @@
 	<p><%= project.description %></p>
 <% end %>
 
-<h2>Current Team Members</h2>
-<% @members.each do |member| %>
-  <h4><%= member.first_name %> <%= member.last_name %></h4>
-  <h5><%= member.email %></h5>
-<% end %>
-
 <h2>Create a New Project</h2>
 <form action="/dashboard" method="post">
 	<label for="">Project Name</label>
 	<input type="text" name="name">
 	<label for="">Project Description</label>
 	<input type="text" name="description">
+	<input type="submit">
+</form>
+
+<h2>Current Team Members</h2>
+<% @team_members.each do |team_member| %>
+  <h4><a href="/member/<%= team_member.id %>"><%= team_member.first_name %> <%= team_member.last_name %></a></h4>
+  <h5><%= team_member.email %></h5>
+<% end %>
+
+<form action="/dashboard" method="post">
+	<h4>Create a new Member</h4>
+	<label for="">First Name</label>
+	<input type="text" name="first_name">
+	<label for="">Last Name</label>
+	<input type="text" name="last_name">
+	<label for="">Email</label>
+	<input type="email" name="email">
 	<input type="submit">
 </form>
