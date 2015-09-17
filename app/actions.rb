@@ -1,5 +1,8 @@
 # Homepage (Root path)
 get '/' do
+  if session[:member_id]
+    @member = Member.find(session[:member_id])
+  end
   erb :index
 end
 
