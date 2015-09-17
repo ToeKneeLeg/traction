@@ -1,3 +1,12 @@
 <% if session[:member_id] %>
   <h1><%= @member.email %></h1>
 <% end %>
+
+<div class="projects">
+  <h3>Current Project WIP:</h3>
+  <% @projects.each do |project| %>
+      <div>
+        <h4><a href="/dashboard/<%=project.id%>"><%= project.name %></a><br> <small>(Description:<%= project.description %>)</small></h4>
+      </div>
+  <% end %>
+</div>

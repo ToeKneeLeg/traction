@@ -1,5 +1,6 @@
-# Homepage (Root path)
+# # Homepage (Root path)
 get '/' do
+  @member = Member.new
   erb :index
 end
 
@@ -49,9 +50,10 @@ get '/log_out' do
   redirect '/'
 end
 
-get '/dashboard' do
-  @project = Project.first
-  @tasks = Task.all
-  @unassigned = Task.where(member_id: nil)
+get '/dashboard/:id' do
+  @member = Member.find(session[:member_id])
+  @project = Project.find params[:id]
+  @tasks = @project.tasks
+  @unassigned = @project.tasks.where(member_id: nil)
   erb :'dashboard/show'
 end

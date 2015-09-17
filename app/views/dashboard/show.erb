@@ -1,7 +1,7 @@
-<h1><%= @project.name %></h1>
+<h1><%= @project.try(:name) %></h1>
 
 <p>
-  Description: <%= @project.description %>
+  Description: <%= @project.try(:description) %>
 </p>
 
 <div class="tasks">
@@ -9,7 +9,7 @@
   <% @tasks.each do |task| %>
     <% if task.member_id != nil %>
       <div>
-        <h4><%= task.description %> <small>(Required skills: <%= task.required_skill %>)</small> Assigned to: <%= "#{task.member.first_name} #{task.member.last_name}" %></h4>
+        <h4><%= task.description %> <small>(Required skills: <%= task.required_skill %>)</small> Assigned to: <%= "#{task.member.try(:first_name)} #{task.member.try(:last_name)}" %></h4>
       </div>
     <% end %>
   <% end %>
@@ -20,7 +20,7 @@
   <h3>Unassigned Tasks:</h3>
   <% @unassigned.each do |task| %>
     <div>
-      <h4><%= task.description %> <small>(Required skills: <%= task.required_skill %>)</small></h4>
+      <h4><%= task.try(:description) %> <small>(Required skills: <%= task.try(:required_skill) %>)</small></h4>
     </div>
   <% end %>
 </div>
