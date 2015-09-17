@@ -57,3 +57,18 @@ get '/dashboard/:id' do
   @unassigned = @project.tasks.where(member_id: nil)
   erb :'dashboard/show'
 end
+
+############to test the add task button. to be replaced by algorithm
+post '/add_task' do
+  @project = Project.find(params[:projectid])
+  @tasks = @project.tasks
+  @member = Member.find(session[:member_id])
+  @unassigned = @project.tasks.where(member_id: nil)
+  @new_task = Task.create!(project_id: params[:projectid],
+                          member_id: @member.id,
+                          description: params[:description],
+                          required_skill: params[:required_skill]
+                          )
+
+  erb :'dashboard/show'
+end

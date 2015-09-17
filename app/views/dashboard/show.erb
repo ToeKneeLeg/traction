@@ -9,7 +9,10 @@
   <% @tasks.each do |task| %>
     <% if task.member_id != nil %>
       <div>
-        <h4><%= task.description %> <small>(Required skills: <%= task.required_skill %>)</small> Assigned to: <%= "#{task.member.try(:first_name)} #{task.member.try(:last_name)}" %></h4>
+        <form method="post" action="/update_task">
+          <input type="checkbox" name="<%= task.completed %>" value="true">
+              <strong><%= task.description %></strong> <small>(Required skills: <%= task.required_skill %>)</small> Assigned to: <%= "#{task.member.try(:first_name)} #{task.member.try(:last_name)}" %>
+        </form>
       </div>
     <% end %>
   <% end %>
@@ -25,12 +28,20 @@
   <% end %>
 </div>
 
-<form method="post" action="/dashboard">
+<form method="post" action="/add_task">
+  <div>
+    <lable>Task Description:</lable>
+    <input type="text" name="description">
+  </div>
+   <div>
+    <label>Required Skill:</label>
+    <input type="text" name="required_skill">
+  </div>
   <div>
     <input type="submit" value="Add Task">
   </div>
   <div>
-    <input type="hidden" value="@project.id">
+    <input type="hidden" name ="projectid" value="<%= @project.id %>">
   </div>
 </form>
 
