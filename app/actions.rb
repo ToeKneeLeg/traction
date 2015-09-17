@@ -58,14 +58,15 @@ get '/dashboard/:id' do
   erb :'dashboard/show'
 end
 
+#to update completed tasks
+#cannot use put in form so we use post to another end point
 post '/dashboard/:id/update' do
   @project = Project.find(params[:projectid])
   @task = Task.find(params[:task_completed])
-  @task.completed = true
-  @task.save
+  @task.update(completed: true)
+
   redirect "dashboard/#{params[:projectid]}"
 end
-
 
 #to add a new task
 post '/dashboard/:id' do

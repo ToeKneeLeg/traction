@@ -15,9 +15,11 @@
           </div>
         <% end %>
       <% end %>
-      <input type="submit" value="Update Taskes">
+      <div>
+        <input type="submit" value="Update Completed Task">
+      </div>
        <div>
-      <input type="hidden" name ="projectid" value="<%= @project.id %>">
+        <input type="hidden" name ="projectid" value="<%= @project.id %>">
       </div>
     </form>    
 </div>
