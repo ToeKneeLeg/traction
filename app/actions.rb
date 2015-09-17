@@ -16,6 +16,9 @@ post '/' do
 end
 
 get '/register' do
+  if session[:member_id]
+    redirect '/dashboard'
+  end
   erb :register
 end
 
