@@ -47,6 +47,26 @@ get '/dashboard' do
   erb :'dashboard/index'
 end
 
+get "/dashboard/:id" do
+  if session[:member_id]
+    @member = Member.find(session[:member_id])
+  else
+    redirect '/register'
+  end
+  @project = Project.find(params[:id])
+  erb :'/dashboard/show'
+end
+
+post '/dashboard' do
+  @project = Project.new(
+    name: params[:name],
+    description: params[:description]
+    )
+  if @project.save
+    redirect "/dashboard/#{@project.id}"
+  end
+end
+
 get '/log_out' do
   session.delete(:member_id)
   redirect '/'
