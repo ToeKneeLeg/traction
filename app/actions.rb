@@ -46,6 +46,7 @@ get '/dashboard' do
   else
     redirect '/register'
   end
+  @members = Member.all
   @projects = Project.all
   erb :'dashboard/index'
 end
