@@ -88,13 +88,24 @@ get "/dashboard/:id" do
   erb :'/dashboard/show'
 end
 
-post '/dashboard' do
+post '/dashboard-project' do
   @project = Project.new(
     name: params[:name],
     description: params[:description]
     )
   if @project.save
     redirect "/dashboard/#{@project.id}"
+  end
+end
+
+post '/dashboard-member' do
+  @member = Member.new(
+    first_name: params[:first_name],
+    last_name: params[:last_name],
+    email: params[:email]
+  )
+  if @member.save
+    redirect "/member/#{@member.id}"
   end
 end
 
