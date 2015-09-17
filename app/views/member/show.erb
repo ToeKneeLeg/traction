@@ -6,4 +6,11 @@
   	<p><%= skilly.skill.name %></p>
   <% end %>
 
+  <h4>Add new skill</h4>
+  <form action="/member/<%= @team_member.id %>" method="post">
+  	<label for="">Skill</label>
+  	<input type="text" name="skill">
+  	<input type="submit">
+  </form>
+
   <a href="/dashboard">Back to dashboard</a>

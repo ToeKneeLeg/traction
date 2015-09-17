@@ -40,6 +40,24 @@ post '/register' do
   end
 end
 
+post '/member/:id' do
+  @team_member = Member.find(params[:id])
+  @skill_exist = Skill.where(name: params[:skill])
+  if !@skill_exist.empty?
+    @member_skill = MemberSkill.create(
+      member_id: @team_member.id,
+      skill_id: Skill.find_by_name(params[:skill]).id
+    )
+  else
+    Skill.create(name: params[:skill])
+    @member_skill = MemberSkill.create(
+      member_id: @team_member.id,
+      skill_id: Skill.find_by_name(params[:skill]).id
+    )
+  end
+  redirect "/member/#{@team_member.id}"
+end
+
 get '/member/:id' do
   if session[:member_id]
     @member = Member.find(session[:member_id])
