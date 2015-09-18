@@ -31,12 +31,21 @@
 
 <div class="unassigned_tasks">
   <h3>Unassigned Tasks:</h3>
+  <form method="post" action="/dashboard/project/<%=@project.id%>/assign">
   <% @unassigned.each do |task| %>
     <div>
       <h4><%= task.try(:description) %> <small>(Required skills: <%= task.skill.try(:name) %>)</small></h4>
     </div>
   <% end %>
+   <div>
+        <input type="submit" value="Assign a Task">
+      </div>
+       <div>
+        <input type="hidden" name ="projectid" value="<%= @project.id %>">
+      </div>
+  </form>
 </div>
+
 
 <form method="post" action="/dashboard/project/<%=@project.id%>">
   <div>

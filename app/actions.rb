@@ -124,15 +124,60 @@ get '/dashboard/project/:id' do
   erb :'dashboard/show'
 end
 
+# def get_task
+#     tasks = Task.where(completed: false, member_id: nil)
+#     # member = Member.where()
+#     member_id = nil
+#     unassigned_task = tasks.find do |t|
+#                       self.skills.exists?(self.skill_id)
+#                       end
+#     unassigned_task.member_id = self.id
+#     unassigned_task.save
+#   end
+
+post '/dashboard/project/:id/assign' do
+  @project = Project.find(params[:projectid])
+  @all_members = Member.all
+  @available_member = []
+
+  @all_members.each do |member|
+    if member.tasks.length == 0
+      @available_member << member
+    end
+  end
+
+  if @available_member
+    @task_available_for_assignment = Task.where(completed: false, member_id: nil)
+
+    @task_to_assign = nil
+
+    @ideal_member = @available_member.find do |member|
+
+      @task_to_assign = @task_available_for_assignment.find do |t|
+        member.skills.exists?(t.skill_id)
+      end
+    end
+  end
+# binding.pry
+   if  @task_to_assign
+    @task_to_assign.member = @ideal_member
+
+    @task_to_assign.save
+   end
+   # binding.pry
+  redirect "dashboard/project/#{params[:projectid]}"
+end
+
 #to update completed tasks
 #cannot use put in form so we use post to another end point
 post '/dashboard/project/:id/update' do
+  # binding.pry
   @project = Project.find(params[:projectid])
   @task = Task.find(params[:task_completed])
   @task.update(completed: true,
                member_id: nil)
 
-
+# binding.pry
   redirect "dashboard/project/#{params[:projectid]}"
 end
 

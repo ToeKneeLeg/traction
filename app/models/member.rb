@@ -6,16 +6,18 @@ class Member < ActiveRecord::Base
 
   validates :first_name, :last_name, :email, presence: true
   
-  after_create :get_task
+  # after_create :get_task
 
-  def get_task
-  	tasks = Task.where(completed: false, member_id: nil)
-
-  	tasks.find do |t|
-  		self.skills.exists?(t.required_skill)
-  	end
-  	task.member_id = member.id
-  end
+  # def get_task
+  # 	tasks = Task.where(completed: false, member_id: nil)
+  #   # member = Member.where()
+  #   member_id = nil
+  # 	unassigned_task = tasks.find do |t|
+  #                     self.skills.exists?(self.skill_id)
+  #                     end
+  # 	unassigned_task.member_id = self.id
+  #   unassigned_task.save
+  # end
 
 end
 
