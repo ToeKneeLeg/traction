@@ -1,4 +1,29 @@
-h1 {
-  color: green; }
+.index-body {
+  background: #00BD9C; }
+  .index-body h1 {
+    color: white;
+    text-align: center;
+    text-transform: uppercase; }
+  .index-body i {
+    color: white;
+    display: inline-block;
+    text-align: center; }
+  .index-body h4 {
+    color: white;
+    text-align: center; }
+  .index-body form {
+    text-align: center; }
+    .index-body form label {
+      color: white;
+      font-size: 20px; }
+    .index-body form input {
+      color: white;
+      font-size: 20px; }
+
+.nav-color {
+  background: #2B3E51; }
+
+.footer-color {
+  background: #2B3E51; }
 
 /*# sourceMappingURL=style.css.map */

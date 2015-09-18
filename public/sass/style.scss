@@ -1,3 +1,36 @@
-h1 {
-	color: green;
+.index-body {
+	background: #00BD9C;
+	h1 {
+		color: white;
+		text-align: center;
+		text-transform: uppercase;
+	}
+	i {
+		color: white;
+		display: inline-block;
+		text-align: center;
+	}
+	h4 {
+		color: white;
+		text-align: center;
+	}
+	form {
+		text-align: center;
+		label {
+			color: white;
+			font-size: 20px;
+		}
+		input {
+			color: white;
+			font-size: 20px;
+		}
+	}
+}
+
+.nav-color {
+	background: #2B3E51;
+}
+
+.footer-color {
+	background: #2B3E51;
 }

@@ -120,7 +120,9 @@ end
 #cannot use put in form so we use post to another end point
 post '/dashboard/:id/update' do
   @project = Project.find(params[:projectid])
-  @task = Task.find(params[:task_completed])
+  # @task = Task.find(params[:task_completed])
+  # @task =
+  @task = Task.update
   @task.update(completed: true)
 
   redirect "dashboard/#{params[:projectid]}"
@@ -135,7 +137,7 @@ post '/dashboard/:id' do
   @new_task = Task.create(project_id: params[:projectid],
                           # member_id: @member.id,
                           description: params[:description],
-                          required_skill: params[:drop_down_required_skill]
+                          required_skill: params[:required_skill]
                           )
   if @new_task.valid?
     redirect "dashboard/#{params[:projectid]}"
