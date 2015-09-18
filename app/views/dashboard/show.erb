@@ -5,13 +5,13 @@
 <h1><%= @project.name %></h1>
 
 
-<div class="tasks">
+<div>
   <h3>Tasks:</h3>  
-    <form method="post" action="/dashboard/<%=@project.id%>/update"> 
+    <form method="post" action="/dashboard/<%= @project.id %>/update"> 
       <% @tasks.each do |task| %>
         <% if !task.member_id.nil? && !task.completed %>
           <div>
-            <input type="radio" name="task_completed" value="<%= task.id%>">
+            <input type="radio" name="task_completed" value="<%= task.id %>">
             <p>
               <strong><%= task.description %></strong> <small>Assigned to: <%= "#{task.member.try(:first_name)} #{task.member.try(:last_name)}" %></small>
             </p>
@@ -28,7 +28,7 @@
 </div>
 <br>
 
-<div class="unassigned_tasks">
+<div>
   <h3>Unassigned Tasks:</h3>
   <% @unassigned.each do |task| %>
     <div>
