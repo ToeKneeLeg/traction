@@ -85,6 +85,8 @@ get "/dashboard/:id" do
     redirect '/register'
   end
   @project = Project.find(params[:id])
+  @tasks = @project.tasks
+  @unassigned = @project.tasks.where(member_id: nil)
   erb :'/dashboard/show'
 end
 
@@ -112,14 +114,6 @@ end
 get '/log_out' do
   session.delete(:member_id)
   redirect '/'
-end
-
-get '/dashboard/:id' do
-  @member = Member.find(session[:member_id])
-  @project = Project.find params[:id]
-  @tasks = @project.tasks
-  @unassigned = @project.tasks.where(member_id: nil)
-  erb :'dashboard/show'
 end
 
 #to update completed tasks
