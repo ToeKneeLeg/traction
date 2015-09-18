@@ -85,6 +85,8 @@ get "/dashboard/:id" do
     redirect '/register'
   end
   @project = Project.find(params[:id])
+  @tasks = @project.tasks
+  @unassigned = @project.tasks.where(member_id: nil)
   erb :'/dashboard/show'
 end
 
@@ -177,7 +179,7 @@ post '/dashboard/project/:id/update' do
   @task.update(completed: true,
                member_id: nil)
 
-# binding.pry
+
   redirect "dashboard/project/#{params[:projectid]}"
 end
 

@@ -20,4 +20,3 @@ class Task < ActiveRecord::Base
     self.save
   end	
 end
-

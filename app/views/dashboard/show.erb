@@ -4,18 +4,17 @@
 <p><a href="/dashboard">Back to projects.</a></p>
 <h1><%= @project.name %></h1>
 
-<p>
-  Description: <%= @project.try(:description) %>
-</p>
 
-<div class="tasks">
+<div>
   <h3>Tasks:</h3>  
-    <form method="post" action="/dashboard/project/<%=@project.id%>/update"> 
+    <form method="post" action="/dashboard/project/<%= @project.id %>/update"> 
       <% @tasks.each do |task| %>
-        <% if task.member_id != nil && task.completed == false %>
+        <% if !task.member_id.nil? && !task.completed %>
           <div>
-            <input type="radio" name="task_completed" value="<%= task.id%>">
-            <strong><%= task.description %></strong> <small>Assigned to: <%= "#{task.member.try(:first_name)} #{task.member.try(:last_name)}" %></small><br><br>
+            <input type="radio" name="task_completed" value="<%= task.id %>">
+            <p>
+              <strong><%= task.description %></strong> <small>Assigned to: <%= "#{task.member.try(:first_name)} #{task.member.try(:last_name)}" %></small>
+            </p>
           </div>
         <% end %>
       <% end %>
@@ -27,9 +26,8 @@
       </div>
     </form>    
 </div>
-<br>
 
-<div class="unassigned_tasks">
+<div>
   <h3>Unassigned Tasks:</h3>
   <form method="post" action="/dashboard/project/<%=@project.id%>/assign">
   <% @unassigned.each do |task| %>
@@ -65,11 +63,7 @@
   <div>
     <label>Create a new required skill that's not on the list</label>
     <input type="text" name="required_skill">
-  </div>
-  <div>
     <input type="submit" value="Add Task">
-  </div>
-  <div>
     <input type="hidden" name ="projectid" value="<%= @project.id %>">
   </div>
 </form>
@@ -77,3 +71,4 @@
 <div>
   <a href="/dashboard">Back to other projects</a>
 </div>
+
