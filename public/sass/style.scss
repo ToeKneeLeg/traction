@@ -1,24 +1,28 @@
+.home {
+	margin-bottom: -20px;
+}
+
 .index-body {
 	background: #00BD9C;
 	h1 {
 		color: white;
 		text-align: center;
 		text-transform: uppercase;
+		padding-top: 30px;
 	}
-	h4 {
-		color: white;
+	h3 {
 		text-align: center;
+		color: #2B3E51;
 	}
 	form {
+		margin: 0 auto;
 		text-align: center;
-		width: 10%;
-		label {
-			color: white;
-			font-size: 20px;
-		}
+		width: 30%;
+		padding-bottom: 80px;
 		input {
 			color: white;
-			font-size: 20px;
+			font-size: 30px;
+			text-align: center;
 		}
 	}
 }

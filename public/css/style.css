@@ -1,24 +1,25 @@
+.home {
+  margin-bottom: -20px; }
+
 .index-body {
   background: #00BD9C; }
   .index-body h1 {
     color: white;
     text-align: center;
-    text-transform: uppercase; }
-  .index-body i {
-    color: white;
-    display: inline-block;
-    text-align: center; }
-  .index-body h4 {
-    color: white;
-    text-align: center; }
+    text-transform: uppercase;
+    padding-top: 30px; }
+  .index-body h3 {
+    text-align: center;
+    color: #2B3E51; }
   .index-body form {
-    text-align: center; }
-    .index-body form label {
-      color: white;
-      font-size: 20px; }
+    margin: 0 auto;
+    text-align: center;
+    width: 30%;
+    padding-bottom: 80px; }
     .index-body form input {
       color: white;
-      font-size: 20px; }
+      font-size: 30px;
+      text-align: center; }
 
 .nav-color {
   background: #2B3E51; }
