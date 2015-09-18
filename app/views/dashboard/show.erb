@@ -4,18 +4,17 @@
 <p><a href="/dashboard">Back to projects.</a></p>
 <h1><%= @project.name %></h1>
 
-<p>
-  Description: <%= @project.try(:description) %>
-</p>
 
 <div class="tasks">
   <h3>Tasks:</h3>  
     <form method="post" action="/dashboard/<%=@project.id%>/update"> 
       <% @tasks.each do |task| %>
-        <% if task.member_id != nil && task.completed == false %>
+        <% if !task.member_id.nil? && !task.completed %>
           <div>
             <input type="radio" name="task_completed" value="<%= task.id%>">
-            <strong><%= task.description %></strong> <small>Assigned to: <%= "#{task.member.try(:first_name)} #{task.member.try(:last_name)}" %></small><br><br>
+            <p>
+              <strong><%= task.description %></strong> <small>Assigned to: <%= "#{task.member.try(:first_name)} #{task.member.try(:last_name)}" %></small>
+            </p>
           </div>
         <% end %>
       <% end %>
