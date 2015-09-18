@@ -1,18 +1,30 @@
-.home {
-	margin-bottom: -20px;
+// Nav
+.nav-color {
+	background: #2B3E51;
 }
 
-.index-body {
+nav .brand-logo {
+	padding-left: 15px;
+}
+
+// Home Page
+.home {
 	background: #00BD9C;
+	margin-bottom: -20px;
 	h1 {
 		color: white;
 		text-align: center;
 		text-transform: uppercase;
 		padding-top: 30px;
 	}
+	.fa {
+		color: #ffb300;
+	}
 	h3 {
 		text-align: center;
 		color: #2B3E51;
+		margin-top: -20px;
+		padding-bottom: 20px;
 	}
 	form {
 		margin: 0 auto;
@@ -27,10 +39,58 @@
 	}
 }
 
-.nav-color {
-	background: #2B3E51;
+.selling-points {
+	height: 50vh;
+	h5 {
+		text-align: center;
+		// padding-top: 40px;
+	}
+	.icons {
+		padding-top: 40px;
+		display: inline-block;
+		width: 100%;
+		text-align: center;
+		color: #ffb300;
+	}
+	p {
+		text-align: center;
+		font-size: 16px;
+	}
 }
 
+// Dashboard
+.projects {
+	h3 {
+		text-align: center;
+	}
+}
+
+.members {
+	background: #2B3E51;
+	height: 60vh;
+}
+
+.card {
+	background: #00BE9C;
+}
+
+ul.add-project {
+	background: red;
+}
+
+.members {
+	h3 {
+		text-align: center;
+	}
+}
+
+.breakpoint {
+	background: #00BE9C;
+	height: 40vh;
+}
+
+
+// Footer
 .footer-color {
 	background: #2B3E51;
 }

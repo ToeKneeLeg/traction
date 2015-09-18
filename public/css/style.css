@@ -1,28 +1,67 @@
-.home {
-  margin-bottom: -20px; }
+.nav-color {
+  background: #2B3E51; }
 
-.index-body {
-  background: #00BD9C; }
-  .index-body h1 {
+nav .brand-logo {
+  padding-left: 15px; }
+
+.home {
+  background: #00BD9C;
+  margin-bottom: -20px; }
+  .home h1 {
     color: white;
     text-align: center;
     text-transform: uppercase;
     padding-top: 30px; }
-  .index-body h3 {
+  .home .fa {
+    color: #ffb300; }
+  .home h3 {
     text-align: center;
-    color: #2B3E51; }
-  .index-body form {
+    color: #2B3E51;
+    margin-top: -20px;
+    padding-bottom: 20px; }
+  .home form {
     margin: 0 auto;
     text-align: center;
     width: 30%;
     padding-bottom: 80px; }
-    .index-body form input {
+    .home form input {
       color: white;
       font-size: 30px;
       text-align: center; }
 
-.nav-color {
-  background: #2B3E51; }
+.selling-points {
+  height: 50vh; }
+  .selling-points h5 {
+    text-align: center; }
+  .selling-points .icons {
+    padding-top: 40px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    color: #ffb300; }
+  .selling-points p {
+    text-align: center;
+    font-size: 16px; }
+
+.projects h3 {
+  text-align: center; }
+
+.members {
+  background: #2B3E51;
+  height: 60vh; }
+
+.card {
+  background: #00BE9C; }
+
+ul.add-project {
+  background: red; }
+
+.members h3 {
+  text-align: center; }
+
+.breakpoint {
+  background: #00BE9C;
+  height: 40vh; }
 
 .footer-color {
   background: #2B3E51; }
