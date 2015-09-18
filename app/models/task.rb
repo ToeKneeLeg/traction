@@ -1,19 +1,22 @@
 class Task < ActiveRecord::Base
   belongs_to :project
   belongs_to :member
-  has_one :skill
+  belongs_to :skill 
   
-  validates :description, :required_skill, presence: true
+  validates :description, :skill_id, presence: true
   validates :description, length: { maximum: 200 }
-  before_create :assign_task
 
+  after_create :assign_task
+  
   def assign_task
-    member = Member.all
-    member.find do |member|
-      if member.tasks.empty? && member.skills.exists?(self.required_skill)
-        self.member_id = member.id 
+  	member = Member.all
+    selected_member = nil
+  	member.find do |member|
+  		if member.tasks.empty? && member.skills.exists?(self.skill_id)
+  			selected_member = member.id 
       end 
-    end
-  end
-
+  	end
+    self.member_id = selected_member
+    self.save
+  end	
 end

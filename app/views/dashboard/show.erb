@@ -7,7 +7,7 @@
 
 <div>
   <h3>Tasks:</h3>  
-    <form method="post" action="/dashboard/<%= @project.id %>/update"> 
+    <form method="post" action="/dashboard/project/<%= @project.id %>/update"> 
       <% @tasks.each do |task| %>
         <% if !task.member_id.nil? && !task.completed %>
           <div>
@@ -31,16 +31,27 @@
   <h3>Unassigned Tasks:</h3>
   <% @unassigned.each do |task| %>
     <div>
-      <h4><%= task.try(:description) %> <small>(Required skills: <%= task.try(:required_skill) %>)</small></h4>
+      <h4><%= task.try(:description) %> <small>(Required skills: <%= task.skill.try(:name) %>)</small></h4>
     </div>
   <% end %>
 </div>
 
-<form method="post" action="/dashboard/<%=@project.id%>">
+<form method="post" action="/dashboard/project/<%=@project.id%>">
   <div>
     <lable>Task Description:</lable>
     <input type="text" name="description">
   </div>
+  <div>
+    <label>Required Skill:</label>
+    <select name="drop_down_required_skill">
+      <option selected="selected" value="<%nil%>">Select a required skill</option>
+      <% @skills.each do |skill| %>
+        <option value="<%=skill.id%>"><%=skill.name%></option>
+      <% end %>
+        <option value="<%nil%>">Not listed? Create one below</option>
+    </select>
+  </div>
+  <div>
     <label>Create a new required skill that's not on the list</label>
     <input type="text" name="required_skill">
     <input type="submit" value="Add Task">
