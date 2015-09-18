@@ -6,6 +6,7 @@ class Member < ActiveRecord::Base
 
   validates :first_name, :last_name, :email, presence: true
   
+  after_create :get_task
   def get_task
   	tasks = Task.where(completed: false, member_id: nil)
 
