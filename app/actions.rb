@@ -78,25 +78,13 @@ get '/dashboard' do
   erb :'dashboard/index'
 end
 
-get "/dashboard/:id" do
-  if session[:member_id]
-    @member = Member.find(session[:member_id])
-  else
-    redirect '/register'
-  end
-  @project = Project.find(params[:id])
-  @tasks = @project.tasks
-  @unassigned = @project.tasks.where(member_id: nil)
-  erb :'/dashboard/show'
-end
-
 post '/dashboard-project' do
   @project = Project.new(
     name: params[:name],
     description: params[:description]
     )
   if @project.save
-    redirect "/dashboard/#{@project.id}"
+    redirect "/dashboard/project/#{@project.id}"
   end
 end
 
@@ -117,7 +105,11 @@ get '/log_out' do
 end
 
 get '/dashboard/project/:id' do
-  @member = Member.find(session[:member_id])
+  if session[:member_id]
+    @member = Member.find(session[:member_id])
+  else
+    redirect '/register'
+  end
   @project = Project.find params[:id]
   @tasks = @project.tasks
   @skills = Skill.all
