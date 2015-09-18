@@ -1,3 +1,10 @@
+<!-- <div class="container">
+	<div class="testimony">
+		<img src="../../../128.jpg" height="128" width="128" alt="">
+		<blockquote>"Traction has increased our teams productivity and efficiency. The organizational tools it provides..."</blockquote>
+	</div>
+</div> -->
+
 <div class="row projects">
   <div class="col s12">
 		<div class="row">
@@ -57,17 +64,28 @@
 	      </ul>
 	    </div>
     </div>
-			<% @projects.each do |project| %>
-			<div class="col s3">
+    <h3 class="project-title">Current Projects</h3>
+		<% @projects.each do |project| %>
+			<div class="col s6">
 				  <div class="card project-card">
+				    <div class="card-image waves-effect waves-block waves-light">
+				    	<i class="fa fa-fire card-content"></i>
+				    </div>
 						<div class="card-content white-text">
-							<a href="/dashboard/project/<%= project.id %>">
-							  <span class="card-title black-text">
+							  <span class="card-title activator black-text">
 							    <%= project.name %>
-							  </span>
-							</a>
+							  <i class="material-icons right">more_vert</i></span>
+      					<p><a href="#">This is a link</a></p>
 							<p><%= project.description %></p>
 						</div>
+						<div class="card-reveal">
+							<span class="card-title grey-text text-darken-4">Team Members<i class="material-icons right">close</i></span>
+      				<p>
+      					<% @team_members.each do |member| %>
+      					  <%= member.first_name %> <%= member.last_name %>
+      					<% end %>
+      				</p>
+    				</div>
 					</div>
 				</a>
 			</div>
@@ -75,30 +93,5 @@
 	</div>
 </div>
 
-
-
-<div class="container">
-	<div class="row members">
-		<div class="row s12">
-			<h2>Team Members</h2>
-		  <table>
-		    <thead>
-		      <tr>
-		        <th data-field="id">Name</th>
-		        <th data-field="name">Email</th>
-		      </tr>
-		    </thead>
-		    <tbody>
-			  <% @team_members.each do |team_member| %>
-		      <tr>
-		        <td><a href="/member/<%= team_member.id %>"><%= team_member.first_name %> <%= team_member.last_name %></a></td>
-		        <td><%= team_member.email %></td>
-		      </tr>
-			  <% end %>
-			  </tbody>
-		  </table>
-		</div>
-	</div>
-</div>
 
 

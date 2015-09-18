@@ -43,8 +43,12 @@ nav .brand-logo {
     text-align: center;
     font-size: 16px; }
 
-.projects h3 {
-  text-align: center; }
+.projects {
+  padding-top: 50px; }
+  .projects h3 {
+    text-align: center; }
+  .projects i {
+    color: #ffb300; }
 
 .members {
   background: #2B3E51;
@@ -52,6 +56,9 @@ nav .brand-logo {
 
 .card {
   background: #00BE9C; }
+
+h3.project-title {
+  text-transform: uppercase; }
 
 .members h3 {
   text-align: center; }
