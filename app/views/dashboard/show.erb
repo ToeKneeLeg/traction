@@ -10,12 +10,16 @@
     <div class="container">
       <h3>Assigned Tasks:</h3>
       <ul class="collection">
-        <li class="collection-item avatar">
-          <img src="../../../128.jpg" height="128" width="128" alt="" class="circle">
-          <span class="title">Set up database</span>
-          <p>Assigned to: Jane Austen</p>
-          <a href="#!" class="secondary-content"><i class="fa fa-check-circle fa-3x"></i></a>
-        </li>
+        <% @tasks.each do |task| %>
+          <% if task.member_id != nil && task.completed == false %>
+            <li class="collection-item avatar">
+              <img src="../../../128.jpg" height="128" width="128" alt="" class="circle">
+              <span class="title"><%= task.description %></span>
+              <p>Assigned to: <%= task.member.first_name %></p>
+              <a href="#!" class="secondary-content"><i class="fa fa-check-circle fa-3x"></i></a>
+            </li>
+          <% end %>
+        <% end %>
       </ul>
     </div>
   </div>
@@ -23,29 +27,13 @@
     <div class="container">
       <h3>Unassigned Tasks:</h3>
       <ul class="collection">
-        <li class="collection-item avatar">
-          <i class="material-icons circle red">perm_identity</i>
-          <span class="title">Set up database</span>
-          <p>Assigned to: Jane Austen</p>
-        </li>
-        <li class="collection-item avatar">
-          <i class="material-icons circle red">perm_identity</i>
-          <span class="title">Create Active Record Models</span>
-          <p>Assigned to: Brian Groat<br>
-          </p>
-        </li>
-        <li class="collection-item avatar">
-          <i class="material-icons circle red">perm_identity</i>
-          <span class="title">Implement front end framework</span>
-          <p>Assigned to: Michael Tomko<br>
-          </p>
-        </li>
-        <li class="collection-item avatar">
-          <i class="material-icons circle red">perm_identity</i>
-          <span class="title">Create callbacks</span>
-          <p>Assigned to: Tony Lei<br>
-          </p>
-        </li>
+        <% @unassigned.each do |task| %>
+          <li class="collection-item avatar">
+            <i class="material-icons circle red">perm_identity</i>
+            <span class="title"><%= task.description %></span>
+            <p><%= task.skill.name %></p>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>

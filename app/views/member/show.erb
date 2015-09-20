@@ -17,33 +17,15 @@
     <div class="container">
       <h3>Assigned Tasks:</h3>
       <ul class="collection">
-        <li class="collection-item avatar">
-          <img src="../../../129.jpg" height="128" width="128" alt="" class="circle">
-          <span class="title">Set up database</span>
-          <p>Assigned to: Michael Jordan</p>
-          <a href="#!" class="secondary-content"><i class="fa fa-check-circle fa-3x"></i></a>
-        </li>
-        <li class="collection-item avatar">
-          <img src="../../../129.jpg" height="128" width="128" alt="" class="circle">
-          <span class="title">Create Active Record Models</span>
-          <p>Assigned to: Michael Jordan<br>
-          </p>
-          <a href="#!" class="secondary-content"><i class="fa fa-check-circle fa-3x"></i></a>
-        </li>
-        <li class="collection-item avatar">
-          <img src="../../../129.jpg" height="128" width="128" alt="" class="circle">
-          <span class="title">Implement front end framework</span>
-          <p>Assigned to: Michael Jordan<br>
-          </p>
-          <a href="#!" class="secondary-content"><i class="fa fa-check-circle fa-3x"></i></a>
-        </li>
-        <li class="collection-item avatar">
-          <img src="../../../129.jpg" height="128" width="128" alt="" class="circle">
-          <span class="title">Create callbacks</span>
-          <p>Assigned to: Michael Jordan<br>
-          </p>
-          <a href="#!" class="secondary-content"><i class="fa fa-check-circle fa-3x"></i></a>
-        </li>
+        <% @tasks.each do |task| %>
+          <li class="collection-item avatar">
+            <img src="../../../129.jpg" height="128" width="128" alt="" class="circle">
+            <span class="title"><%= task.description %></span>
+            <p>Assigned to: <%= @team_member.first_name %> <%= @team_member.last_name %></p>
+            <p>Project: <%= task.project.name %></p>
+            <a href="#!" class="secondary-content"><i class="fa fa-check-circle fa-3x"></i></a>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
@@ -51,19 +33,12 @@
     <div class="container">
       <h3>Skills:</h3>
       <ul class="collection">
-        <li class="collection-item avatar">
-          <img src="../../../129.jpg" height="128" width="128" alt="" class="circle">
-          <span class="title">Ruby</span>
-        </li>
-        <li class="collection-item avatar">
-          <img src="../../../129.jpg" height="128" width="128" alt="" class="circle">
-          <span class="title">Ruby on Rails</span>
-        </li>
-        <li class="collection-item avatar">
-          <img src="../../../129.jpg" height="128" width="128" alt="" class="circle">
-          <span class="title">JavScript</span>
-          </p>
-        </li>
+        <% @skills.each do |skill| %>
+          <li class="collection-item avatar">
+            <img src="../../../129.jpg" height="128" width="128" alt="" class="circle">
+            <span class="title"><%= skill.name %></span>
+          </li>
+        <% end %>
       </ul>
       <ul class="collapsible" data-collapsible="accordion">
         <li>
@@ -71,15 +46,12 @@
           <div class="collapsible-body">
             <p>
               <div class="container">
-                <form action="/dashboard-project" method="post">
+                <form action="/member/:id" method="post">
                   <div class="row">
-                    <div class="col s4">
-                      <input type="text" name="description" placeholder="Task Description">
-                    </div>
                     <div class="col s8">
-                      <input type="text" name="required_skills" placeholder="Required Skills">
+                      <input type="text" name="skill" placeholder="Skill">
                     </div>
-                    <input type="hidden" name="project_id" value="<%= @team_member.id %>">
+                    <input type="hidden" name="member_id" value="<%= @team_member.id %>">
                     <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                       <i class="material-icons right">send</i>
                     </button>

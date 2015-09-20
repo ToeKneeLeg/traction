@@ -47,16 +47,14 @@ post '/member/:id/delete' do
 end
 
 post '/member/:id' do
-  @team_member = Member.find(params[:id])
-  @dropdown_input = params[:drop_down_skill]
-  if @dropdown_input != ""
-    MemberSkill.create(member_id: params[:id], skill_id: params[:drop_down_skill])
-  else
+  @team_member = Member.find(params[:member_id])
+  @find_skill = Skill.find_by_name(params[:skill])
+  if @find_skill.nil?
     @new_skill_from_member = Skill.create(name: params[:skill])
-    MemberSkill.create(member_id: params[:id], skill_id: @new_skill_from_member.id)
+    MemberSkill.create(member_id: @team_member.id, skill_id: @new_skill_from_member.id)
+  else
+    MemberSkill.create(member_id: @team_member.id, skill_id: @find_skill.id)
   end
-
-  @team_member.save
   redirect "/member/#{@team_member.id}"
 end
 
@@ -65,6 +63,7 @@ get '/member/:id' do
     @member = Member.find(session[:member_id])
   end
   @team_member = Member.find(params[:id])
+  @tasks = @team_member.tasks
   @skills = @team_member.skills
   @all_skills = Skill.all
   erb :'/member/show'
