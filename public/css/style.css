@@ -1,5 +1,8 @@
 .nav-color {
   background: #2B3E51; }
+  .nav-color i {
+    color: #ffb300;
+    float: right; }
 
 nav .brand-logo {
   padding-left: 15px; }
@@ -44,11 +47,15 @@ nav .brand-logo {
     font-size: 16px; }
 
 .projects {
-  padding-top: 50px; }
+  padding-top: 50px;
+  padding-bottom: 100px;
+  margin-bottom: -40px; }
   .projects h3 {
     text-align: center; }
-  .projects i {
+  .projects .fa-plus-square, .projects .fa-fire, .projects .fa-group {
     color: #ffb300; }
+  .projects .fa-check-circle {
+    color: #00BE9C; }
 
 .members {
   background: #2B3E51;
@@ -63,11 +70,27 @@ h3.project-title {
 .members h3 {
   text-align: center; }
 
-.breakpoint {
-  background: #00BE9C;
-  height: 40vh; }
+.project-banner {
+  background: #00BE9C; }
+  .project-banner h2, .project-banner h3, .project-banner h4 {
+    text-align: center;
+    color: white; }
+  .project-banner h4 {
+    padding-bottom: 40px; }
 
-.footer-color {
-  background: #2B3E51; }
+.off-white {
+  background: whitesmoke;
+  margin-top: -20px; }
+  .off-white h3 {
+    padding-top: 30px; }
+
+.add-task {
+  padding-bottom: 40px;
+  margin-bottom: -30px; }
+  .add-task i {
+    color: #ffb300; }
+
+.page-footer i {
+  color: #ffb300; }
 
 /*# sourceMappingURL=style.css.map */

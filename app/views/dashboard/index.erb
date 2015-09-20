@@ -5,7 +5,7 @@
 	</div>
 </div> -->
 
-<div class="row projects">
+<div class="row projects off-white">
   <div class="col s12">
 		<div class="row">
 	    <div class="col s6 add-project">
@@ -68,23 +68,18 @@
 		<% @projects.each do |project| %>
 			<div class="col s6">
 				  <div class="card project-card">
-				    <div class="card-image waves-effect waves-block waves-light">
-				    	<i class="fa fa-fire card-content"></i>
-				    </div>
+				    <!-- <div class="card-image waves-effect waves-block waves-light">
+				    	<i class="fa fa-fire fa-5x card-content"></i>
+				    </div> -->
 						<div class="card-content white-text">
 							  <span class="card-title activator black-text">
 							    <%= project.name %>
 							  <i class="material-icons right">more_vert</i></span>
-      					<p><a href="#">This is a link</a></p>
-							<p><%= project.description %></p>
+      					<p><a href="/dashboard/project/<%= project.id %>">This is a link</a></p>
 						</div>
 						<div class="card-reveal">
-							<span class="card-title grey-text text-darken-4">Team Members<i class="material-icons right">close</i></span>
-      				<p>
-      					<% @team_members.each do |member| %>
-      					  <%= member.first_name %> <%= member.last_name %>
-      					<% end %>
-      				</p>
+							<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+      				<p><%= project.description %></p>
     				</div>
 					</div>
 				</a>

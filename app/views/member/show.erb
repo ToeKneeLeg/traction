@@ -1,16 +1,89 @@
-<h1><%= @team_member.first_name %> <%= @team_member.last_name %></h1>
-<h2><%= @team_member.email %></h2>
-<h3>Tasks Assigned</h3>
-<h3>Skills</h3>
-  <% @skills.each do |skilly| %>
-  	<p><%= skilly.skill.name %></p>
-  <% end %>
+<div class="row">
+  <div class="col s12 project-banner">
+    <h2><%= @team_member.first_name %> <%= @team_member.last_name %></h2>
+    <h4><%= @team_member.email %></h4>
+  </div>
+</div>
 
-  <h4>Add new skill</h4>
-  <form action="/member/<%= @team_member.id %>" method="post">
-  	<label for="">Skill</label>
-  	<input type="text" name="skill">
-  	<input type="submit">
-  </form>
 
-  <a href="/dashboard">Back to dashboard</a>
+<div class="row off-white projects">
+  <div class="col s6">
+    <div class="container">
+      <h3>Assigned Tasks:</h3>
+      <ul class="collection">
+        <li class="collection-item avatar">
+          <img src="../../../129.jpg" height="128" width="128" alt="" class="circle">
+          <span class="title">Set up database</span>
+          <p>Assigned to: Michael Jordan</p>
+          <a href="#!" class="secondary-content"><i class="fa fa-check-circle fa-3x"></i></a>
+        </li>
+        <li class="collection-item avatar">
+          <img src="../../../129.jpg" height="128" width="128" alt="" class="circle">
+          <span class="title">Create Active Record Models</span>
+          <p>Assigned to: Michael Jordan<br>
+          </p>
+          <a href="#!" class="secondary-content"><i class="fa fa-check-circle fa-3x"></i></a>
+        </li>
+        <li class="collection-item avatar">
+          <img src="../../../129.jpg" height="128" width="128" alt="" class="circle">
+          <span class="title">Implement front end framework</span>
+          <p>Assigned to: Michael Jordan<br>
+          </p>
+          <a href="#!" class="secondary-content"><i class="fa fa-check-circle fa-3x"></i></a>
+        </li>
+        <li class="collection-item avatar">
+          <img src="../../../129.jpg" height="128" width="128" alt="" class="circle">
+          <span class="title">Create callbacks</span>
+          <p>Assigned to: Michael Jordan<br>
+          </p>
+          <a href="#!" class="secondary-content"><i class="fa fa-check-circle fa-3x"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col s6">
+    <div class="container">
+      <h3>Skills:</h3>
+      <ul class="collection">
+        <li class="collection-item avatar">
+          <img src="../../../129.jpg" height="128" width="128" alt="" class="circle">
+          <span class="title">Ruby</span>
+        </li>
+        <li class="collection-item avatar">
+          <img src="../../../129.jpg" height="128" width="128" alt="" class="circle">
+          <span class="title">Ruby on Rails</span>
+        </li>
+        <li class="collection-item avatar">
+          <img src="../../../129.jpg" height="128" width="128" alt="" class="circle">
+          <span class="title">JavScript</span>
+          </p>
+        </li>
+      </ul>
+      <ul class="collapsible" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header"><i class="fa fa-plus-square"></i>Add Skill</div>
+          <div class="collapsible-body">
+            <p>
+              <div class="container">
+                <form action="/dashboard-project" method="post">
+                  <div class="row">
+                    <div class="col s4">
+                      <input type="text" name="description" placeholder="Task Description">
+                    </div>
+                    <div class="col s8">
+                      <input type="text" name="required_skills" placeholder="Required Skills">
+                    </div>
+                    <input type="hidden" name="project_id" value="<%= @team_member.id %>">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                      <i class="material-icons right">send</i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

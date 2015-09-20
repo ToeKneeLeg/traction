@@ -1,8 +1,13 @@
 $fire: #ffb300;
+$teal: #00BE9C;
 
 // Nav
 .nav-color {
 	background: #2B3E51;
+	i {
+		color: $fire;
+		float: right;
+	}
 }
 
 nav .brand-logo {
@@ -63,11 +68,16 @@ nav .brand-logo {
 // Dashboard
 .projects {
 	padding-top: 50px;
+	padding-bottom: 100px;
+	margin-bottom: -40px;
 	h3 {
 		text-align: center;
 	}
-	i {
+	.fa-plus-square, .fa-fire, .fa-group {
 		color: $fire;
+	}
+	.fa-check-circle {
+		color: $teal;
 	}
 }
 
@@ -77,7 +87,7 @@ nav .brand-logo {
 }
 
 .card {
-	background: #00BE9C;
+	background: $teal;
 }
 
 h3.project-title {
@@ -90,14 +100,38 @@ h3.project-title {
 	}
 }
 
+// dashboard/project/:id
+.project-banner {
+	background: $teal;
+	h2,h3,h4 {
+		text-align: center;
+		color: white;
+	}
+	h4 {
+		padding-bottom: 40px;
+	}
+}
 
-.breakpoint {
-	background: #00BE9C;
-	height: 40vh;
+.off-white {
+	background: whitesmoke;
+	margin-top: -20px;
+	h3 {
+		padding-top: 30px;
+	}
+}
+
+.add-task {
+	padding-bottom: 40px;
+	margin-bottom: -30px;
+	i {
+		color: $fire;
+	}
 }
 
 
 // Footer
-.footer-color {
-	background: #2B3E51;
+.page-footer {
+	i {
+		color: $fire;
+	}
 }
