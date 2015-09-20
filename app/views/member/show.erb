@@ -9,9 +9,9 @@
   <h4>Add new skill</h4>
   <form action="/member/<%= @team_member.id %>" method="post">
     <div>
-    <label for="">Skill</label>
+    <!-- <label for="">Skill</label> -->
     <select name="drop_down_skill">
-      <option selected="selected" value="<%nil%>">Select a required skill</option>
+      <option selected="selected" value="<%nil%>">Select a skill to add to the member</option>
       <% @all_skills.each do |skill| %>
         <option value="<%=skill.id%>"><%=skill.name%></option>
       <% end %>
@@ -19,12 +19,19 @@
     </select>
     </div>
     <div>
-    <label>Add a new skill</label>
+    <!-- <label>Add Skill to Member</label> -->
     <input type="text" name="skill">
   </div>
   <div>
     <input type="submit" value="Add Skill">
   </div>
 </form>
+
+<div>
+  <form method="post" action="/member/<%= @team_member.id %>/delete">
+    <input type="submit" value="Remove Member">
+     <input type="hidden" name ="memberid" value="<%= @team_member.id %>">
+  </form>
+</div>
 
   <a href="/dashboard">Back to dashboard</a>

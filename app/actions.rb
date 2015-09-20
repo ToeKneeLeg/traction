@@ -40,6 +40,12 @@ post '/register' do
   end
 end
 
+post '/member/:id/delete' do
+  @member = Member.find(params[:memberid])
+    @member.destroy
+    redirect '/dashboard'
+end
+
 post '/member/:id' do
   @team_member = Member.find(params[:id])
   @dropdown_input = params[:drop_down_skill]
@@ -163,6 +169,12 @@ post '/dashboard/project/:id/update' do
   redirect "dashboard/project/#{params[:projectid]}"
 end
 
+  post '/dashboard/project/:id/delete' do
+    @project = Project.find(params[:projectid])
+    @project.delete
+    redirect '/dashboard'
+  end
+
 #to add a new task
 post '/dashboard/project/:id' do
   @project = Project.find(params[:projectid])
@@ -181,4 +193,6 @@ post '/dashboard/project/:id' do
     @new_task.save
     redirect "dashboard/project/#{params[:projectid]}"
   end
+
+
 end
