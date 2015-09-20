@@ -138,8 +138,9 @@ post '/dashboard/project/:id' do
   @new_task = Task.create(project_id: params[:projectid],
                           # member_id: @member.id,
                           description: params[:description],
-                          skill_id: params[:drop_down_required_skill]
+                          skill_id: params[:required_skill]
                           )
+  # binding.pry
   if @new_task.valid?
     redirect "dashboard/project/#{params[:projectid]}"
   else
