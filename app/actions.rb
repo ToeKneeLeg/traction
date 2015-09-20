@@ -121,8 +121,6 @@ get '/dashboard/project/:id' do
   erb :'dashboard/show'
 end
 
-<<<<<<< HEAD
-=======
 post '/dashboard/project/:id/assign' do
   @project = Project.find(params[:projectid])
   @all_members = Member.all
@@ -154,7 +152,6 @@ post '/dashboard/project/:id/assign' do
   redirect "dashboard/project/#{params[:projectid]}"
 end
 
->>>>>>> 930705b757950ec5ace9a3f87f7e262f0c2217ce
 #to update completed tasks
 #cannot use put in form so we use post to another end point
 post '/dashboard/project/:id/update' do

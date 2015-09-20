@@ -72,6 +72,16 @@
   </div>
 </div>
 
+<div class="unassigned_tasks">
+  <h3>Unassigned Tasks:</h3>
+  <form method="post" action="/dashboard/project/<%=@project.id%>/assign">
+    <input type="submit" value="Assign Tasks">
+    <div>
+    <input type="hidden" name ="projectid" value="<%= @project.id %>">
+    </div>
+  </form>
+</div>
+
 <div class="row off-white add-task">
   <div class="col s12">
     <div class="container"> 
@@ -88,7 +98,7 @@
                         <input type="text" name="description" placeholder="Task Description">
                       </div>
                       <div class="col s8">
-                        <input type="text" name="required_skills" placeholder="Required Skills">
+                        <input type="text" name="required_skill" placeholder="Required Skills">
                       </div>
                       <input type="hidden" name="projectid" value="<%= @project.id %>">
                       <button class="btn waves-effect waves-light" type="submit" name="action">Submit
