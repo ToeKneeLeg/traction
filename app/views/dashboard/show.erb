@@ -104,5 +104,12 @@
       </div>
     </div>
   </div>
+</form>
+<div>
+  <form method="post" action="/dashboard/project/<%=@project.id%>/delete">
+    <input type="submit" value="Delete Project">
+     <input type="hidden" name ="projectid" value="<%= @project.id %>">
+  </form>
 </div>
+
 

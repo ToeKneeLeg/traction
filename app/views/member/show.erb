@@ -5,6 +5,12 @@
   </div>
 </div>
 
+<div>
+  <form method="post" action="/member/<%= @team_member.id %>/delete">
+    <input type="submit" value="Remove Member">
+     <input type="hidden" name ="memberid" value="<%= @team_member.id %>">
+  </form>
+</div>
 
 <div class="row off-white projects">
   <div class="col s6">

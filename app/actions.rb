@@ -40,21 +40,23 @@ post '/register' do
   end
 end
 
+post '/member/:id/delete' do
+  @member = Member.find(params[:memberid])
+    @member.destroy
+    redirect '/dashboard'
+end
+
 post '/member/:id' do
   @team_member = Member.find(params[:id])
-  @skill_exist = Skill.where(name: params[:skill])
-  if !@skill_exist.empty?
-    @member_skill = MemberSkill.create(
-      member_id: @team_member.id,
-      skill_id: Skill.find_by_name(params[:skill]).id
-    )
+  @dropdown_input = params[:drop_down_skill]
+  if @dropdown_input != ""
+    MemberSkill.create(member_id: params[:id], skill_id: params[:drop_down_skill])
   else
-    Skill.create(name: params[:skill])
-    @member_skill = MemberSkill.create(
-      member_id: @team_member.id,
-      skill_id: Skill.find_by_name(params[:skill]).id
-    )
+    @new_skill_from_member = Skill.create(name: params[:skill])
+    MemberSkill.create(member_id: params[:id], skill_id: @new_skill_from_member.id)
   end
+
+  @team_member.save
   redirect "/member/#{@team_member.id}"
 end
 
@@ -63,7 +65,8 @@ get '/member/:id' do
     @member = Member.find(session[:member_id])
   end
   @team_member = Member.find(params[:id])
-  @skills = @team_member.member_skills.all
+  @skills = @team_member.skills
+  @all_skills = Skill.all
   erb :'/member/show'
 end
 
@@ -118,6 +121,40 @@ get '/dashboard/project/:id' do
   erb :'dashboard/show'
 end
 
+<<<<<<< HEAD
+=======
+post '/dashboard/project/:id/assign' do
+  @project = Project.find(params[:projectid])
+  @all_members = Member.all
+  @available_member = []
+
+  @all_members.each do |member|
+    if member.tasks.length == 0
+      @available_member << member
+    end
+  end
+
+  if @available_member
+    @task_available_for_assignment = Task.where(completed: false, member_id: nil)
+
+    @task_to_assign = nil
+
+    @ideal_member = @available_member.find do |member|
+
+      @task_to_assign = @task_available_for_assignment.find do |t|
+        member.skills.exists?(t.skill_id)
+      end
+    end
+  end
+   if  @task_to_assign
+    @task_to_assign.member = @ideal_member
+
+    @task_to_assign.save
+   end
+  redirect "dashboard/project/#{params[:projectid]}"
+end
+
+>>>>>>> 930705b757950ec5ace9a3f87f7e262f0c2217ce
 #to update completed tasks
 #cannot use put in form so we use post to another end point
 post '/dashboard/project/:id/update' do
@@ -129,6 +166,12 @@ post '/dashboard/project/:id/update' do
   redirect "dashboard/project/#{params[:projectid]}"
 end
 
+  post '/dashboard/project/:id/delete' do
+    @project = Project.find(params[:projectid])
+    @project.delete
+    redirect '/dashboard'
+  end
+
 #to add a new task
 post '/dashboard/project/:id' do
   @project = Project.find(params[:projectid])
@@ -136,7 +179,6 @@ post '/dashboard/project/:id' do
   @member = Member.find(session[:member_id])
   @unassigned = @project.tasks.where(member_id: nil)
   @new_task = Task.create(project_id: params[:projectid],
-                          # member_id: @member.id,
                           description: params[:description],
                           skill_id: params[:required_skill]
                           )
@@ -149,4 +191,6 @@ post '/dashboard/project/:id' do
     @new_task.save
     redirect "dashboard/project/#{params[:projectid]}"
   end
+
+
 end
