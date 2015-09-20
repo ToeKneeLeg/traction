@@ -12,7 +12,7 @@ class Task < ActiveRecord::Base
   	member = Member.all
     selected_member = nil
   	member.find do |member|
-  		if member.tasks.empty? && member.skills.exists?(self.skill_id)
+  		if (member.tasks.count <= 2) && member.skills.exists?(self.skill_id)
   			selected_member = member.id 
       end 
   	end

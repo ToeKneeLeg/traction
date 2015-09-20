@@ -3,14 +3,28 @@
 <h3>Tasks Assigned</h3>
 <h3>Skills</h3>
   <% @skills.each do |skilly| %>
-  	<p><%= skilly.skill.name %></p>
+  	<p><%= skilly.name %></p>
   <% end %>
 
   <h4>Add new skill</h4>
   <form action="/member/<%= @team_member.id %>" method="post">
-  	<label for="">Skill</label>
-  	<input type="text" name="skill">
-  	<input type="submit">
-  </form>
+    <div>
+    <label for="">Skill</label>
+    <select name="drop_down_skill">
+      <option selected="selected" value="<%nil%>">Select a required skill</option>
+      <% @all_skills.each do |skill| %>
+        <option value="<%=skill.id%>"><%=skill.name%></option>
+      <% end %>
+        <option value="<%nil%>">Not listed? Create one below</option>
+    </select>
+    </div>
+    <div>
+    <label>Add a new skill</label>
+    <input type="text" name="skill">
+  </div>
+  <div>
+    <input type="submit" value="Add Skill">
+  </div>
+</form>
 
   <a href="/dashboard">Back to dashboard</a>

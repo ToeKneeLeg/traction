@@ -42,19 +42,15 @@ end
 
 post '/member/:id' do
   @team_member = Member.find(params[:id])
-  @skill_exist = Skill.where(name: params[:skill])
-  if !@skill_exist.empty?
-    @member_skill = MemberSkill.create(
-      member_id: @team_member.id,
-      skill_id: Skill.find_by_name(params[:skill]).id
-    )
+  @dropdown_input = params[:drop_down_skill]
+  if @dropdown_input != ""
+    MemberSkill.create(member_id: params[:id], skill_id: params[:drop_down_skill])
   else
-    Skill.create(name: params[:skill])
-    @member_skill = MemberSkill.create(
-      member_id: @team_member.id,
-      skill_id: Skill.find_by_name(params[:skill]).id
-    )
+    @new_skill_from_member = Skill.create(name: params[:skill])
+    MemberSkill.create(member_id: params[:id], skill_id: @new_skill_from_member.id)
   end
+
+  @team_member.save
   redirect "/member/#{@team_member.id}"
 end
 
@@ -63,7 +59,8 @@ get '/member/:id' do
     @member = Member.find(session[:member_id])
   end
   @team_member = Member.find(params[:id])
-  @skills = @team_member.member_skills.all
+  @skills = @team_member.skills
+  @all_skills = Skill.all
   erb :'/member/show'
 end
 
@@ -94,7 +91,7 @@ post '/dashboard-project' do
     description: params[:description]
     )
   if @project.save
-    redirect "/dashboard/#{@project.id}"
+    redirect "/dashboard/project/#{@project.id}"
   end
 end
 
@@ -124,17 +121,6 @@ get '/dashboard/project/:id' do
   erb :'dashboard/show'
 end
 
-# def get_task
-#     tasks = Task.where(completed: false, member_id: nil)
-#     # member = Member.where()
-#     member_id = nil
-#     unassigned_task = tasks.find do |t|
-#                       self.skills.exists?(self.skill_id)
-#                       end
-#     unassigned_task.member_id = self.id
-#     unassigned_task.save
-#   end
-
 post '/dashboard/project/:id/assign' do
   @project = Project.find(params[:projectid])
   @all_members = Member.all
@@ -158,26 +144,22 @@ post '/dashboard/project/:id/assign' do
       end
     end
   end
-# binding.pry
    if  @task_to_assign
     @task_to_assign.member = @ideal_member
 
     @task_to_assign.save
    end
-   # binding.pry
   redirect "dashboard/project/#{params[:projectid]}"
 end
 
 #to update completed tasks
 #cannot use put in form so we use post to another end point
 post '/dashboard/project/:id/update' do
-  # binding.pry
   @project = Project.find(params[:projectid])
   @task = Task.find(params[:task_completed])
   @task.update(completed: true,
                member_id: nil)
 
-# binding.pry
   redirect "dashboard/project/#{params[:projectid]}"
 end
 
@@ -188,7 +170,6 @@ post '/dashboard/project/:id' do
   @member = Member.find(session[:member_id])
   @unassigned = @project.tasks.where(member_id: nil)
   @new_task = Task.create(project_id: params[:projectid],
-                          # member_id: @member.id,
                           description: params[:description],
                           skill_id: params[:drop_down_required_skill]
                           )
