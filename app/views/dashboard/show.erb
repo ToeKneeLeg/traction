@@ -16,27 +16,6 @@
           <p>Assigned to: Jane Austen</p>
           <a href="#!" class="secondary-content"><i class="fa fa-check-circle fa-3x"></i></a>
         </li>
-        <li class="collection-item avatar">
-          <img src="../../../129.jpg" height="128" width="128" alt="" class="circle">
-          <span class="title">Create Active Record Models</span>
-          <p>Assigned to: Brian Groat<br>
-          </p>
-          <a href="#!" class="secondary-content"><i class="fa fa-check-circle fa-3x"></i></a>
-        </li>
-        <li class="collection-item avatar">
-          <img src="../../../129.jpg" height="128" width="128" alt="" class="circle">
-          <span class="title">Implement front end framework</span>
-          <p>Assigned to: Michael Tomko<br>
-          </p>
-          <a href="#!" class="secondary-content"><i class="fa fa-check-circle fa-3x"></i></a>
-        </li>
-        <li class="collection-item avatar">
-          <img src="../../../129.jpg" height="128" width="128" alt="" class="circle">
-          <span class="title">Create callbacks</span>
-          <p>Assigned to: Tony Lei<br>
-          </p>
-          <a href="#!" class="secondary-content"><i class="fa fa-check-circle fa-3x"></i></a>
-        </li>
       </ul>
     </div>
   </div>
@@ -73,7 +52,7 @@
 </div>
 
 <div class="unassigned_tasks">
-  <h3>Unassigned Tasks:</h3>
+  <h3>Assign Task:</h3>
   <form method="post" action="/dashboard/project/<%=@project.id%>/assign">
     <input type="submit" value="Assign Tasks">
     <div>

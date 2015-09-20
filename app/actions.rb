@@ -175,19 +175,23 @@ post '/dashboard/project/:id' do
   @tasks = @project.tasks
   @member = Member.find(session[:member_id])
   @unassigned = @project.tasks.where(member_id: nil)
-  @new_task = Task.create(project_id: params[:projectid],
-                          description: params[:description],
-                          skill_id: params[:required_skill]
-                          )
-  # binding.pry
-  if @new_task.valid?
+  @skill_id = Skill.find_by_name(params[:required_skill])
+  if !@skill_id.nil?
+    @new_task = Task.create(project_id: params[:projectid],
+                            description: params[:description],
+                            required_skill: params[:required_skill],
+                            skill_id: @skill_id.id
+                            )
+    @new_task.save
     redirect "dashboard/project/#{params[:projectid]}"
   else
     @new_skill = Skill.create(name: params[:required_skill])
-    @new_task.skill_id = @new_skill.id
+    @new_task = Task.create(project_id: params[:projectid],
+                            description: params[:description],
+                            required_skill: params[:required_skill],
+                            skill_id: @new_skill.id
+                            )
     @new_task.save
     redirect "dashboard/project/#{params[:projectid]}"
   end
-
-
 end
