@@ -57,18 +57,20 @@ nav .brand-logo {
   .projects .fa-check-circle {
     color: #00BE9C; }
 
-.members {
-  background: #2B3E51;
-  height: 60vh; }
-
 .card {
   background: #00BE9C; }
+  .card .card-title {
+    font-size: 40px;
+    font-weight: 400; }
+    .card .card-title a {
+      color: black; }
+    .card .card-title .material-icons {
+      color: #ffb300; }
+  .card .project-description {
+    font-size: 20px; }
 
 h3.project-title {
   text-transform: uppercase; }
-
-.members h3 {
-  text-align: center; }
 
 .project-banner {
   background: #00BE9C; }
@@ -80,7 +82,7 @@ h3.project-title {
 
 .off-white {
   background: whitesmoke;
-  margin-top: -20px; }
+  margin-top: -30px; }
   .off-white h3 {
     padding-top: 30px; }
 
@@ -89,6 +91,15 @@ h3.project-title {
   margin-bottom: -30px; }
   .add-task i {
     color: #ffb300; }
+
+.remove-member, .delete-project {
+  text-align: center;
+  margin-top: -40px;
+  padding-bottom: 20px; }
+  .remove-member button, .delete-project button {
+    color: #ffb300; }
+  .remove-member .btn, .delete-project .btn {
+    background: #2A3E52; }
 
 .page-footer i {
   color: #ffb300; }

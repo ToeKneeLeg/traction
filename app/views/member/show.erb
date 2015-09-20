@@ -2,14 +2,14 @@
   <div class="col s12 project-banner">
     <h2><%= @team_member.first_name %> <%= @team_member.last_name %></h2>
     <h4><%= @team_member.email %></h4>
+    <div class="remove-member">
+      <form method="post" action="/member/<%= @team_member.id %>/delete">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Remove Member
+        <i class="material-icons right">error</i>
+        <input type="hidden" name ="memberid" value="<%= @team_member.id %>">
+      </form>
+    </div>
   </div>
-</div>
-
-<div>
-  <form method="post" action="/member/<%= @team_member.id %>/delete">
-    <input type="submit" value="Remove Member">
-     <input type="hidden" name ="memberid" value="<%= @team_member.id %>">
-  </form>
 </div>
 
 <div class="row off-white projects">
@@ -19,10 +19,10 @@
       <ul class="collection">
         <% @tasks.each do |task| %>
           <li class="collection-item avatar">
-            <img src="../../../129.jpg" height="128" width="128" alt="" class="circle">
+            <i class="fa fa-user fa-2x circle"></i>
             <span class="title"><%= task.description %></span>
             <p>Assigned to: <%= @team_member.first_name %> <%= @team_member.last_name %></p>
-            <p>Project: <%= task.project.name %></p>
+            <p>Project: <a href="/dashboard/project/<%= task.project.id %>"><%= task.project.name %></a></p>
             <a href="#!" class="secondary-content"><i class="fa fa-check-circle fa-3x"></i></a>
           </li>
         <% end %>
@@ -35,7 +35,7 @@
       <ul class="collection">
         <% @skills.each do |skill| %>
           <li class="collection-item avatar">
-            <img src="../../../129.jpg" height="128" width="128" alt="" class="circle">
+            <i class="fa fa-wrench fa-3x circle blue-grey darken-4"></i>
             <span class="title"><%= skill.name %></span>
           </li>
         <% end %>

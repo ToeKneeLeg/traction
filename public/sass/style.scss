@@ -1,5 +1,6 @@
 $fire: #ffb300;
 $teal: #00BE9C;
+$blue: #2A3E52;
 
 // Nav
 .nav-color {
@@ -80,24 +81,25 @@ nav .brand-logo {
 		color: $teal;
 	}
 }
-
-.members {
-	background: #2B3E51;
-	height: 60vh;
-}
-
 .card {
 	background: $teal;
+	.card-title {
+		font-size: 40px;
+		font-weight: 400;
+		a {
+			color: black;
+		}
+		.material-icons {
+			color: $fire;
+		}
+	}
+	.project-description {
+		font-size: 20px;
+	}
 }
 
 h3.project-title {
 	text-transform: uppercase;
-}
-
-.members {
-	h3 {
-		text-align: center;
-	}
 }
 
 // dashboard/project/:id
@@ -114,7 +116,7 @@ h3.project-title {
 
 .off-white {
 	background: whitesmoke;
-	margin-top: -20px;
+	margin-top: -30px;
 	h3 {
 		padding-top: 30px;
 	}
@@ -125,6 +127,19 @@ h3.project-title {
 	margin-bottom: -30px;
 	i {
 		color: $fire;
+	}
+}
+
+// member/show
+.remove-member, .delete-project {
+	text-align: center;
+	margin-top: -40px;
+	padding-bottom: 20px;
+	button {
+		color: $fire;
+	}
+	.btn {
+		background: $blue;
 	}
 }
 
