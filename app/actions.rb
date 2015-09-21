@@ -126,13 +126,13 @@ post '/dashboard/project/:id/assign' do
   @available_member = []
 
   @all_members.each do |member|
-    if member.tasks.length == 0
+    if member.tasks.length <= 2
       @available_member << member
     end
   end
 
   if @available_member
-    @task_available_for_assignment = Task.where(completed: false, member_id: nil)
+    @task_available_for_assignment = Task.where(project_id: @project.id, completed: false, member_id: nil)
 
     @task_to_assign = nil
 
