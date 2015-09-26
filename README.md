@@ -1,7 +1,8 @@
-Sinatra
+Traction
 =============
 
-Brought to you by Lighthouse Labs
+Created by Brian Groat and Tony Lei on the back end using Sinatra and Active Record, and built on the front end by 
+Michael Tomko using Materialize. This was built for our midterm project at Lighthouse Labs in 3 days. 
 
 ## Getting Started
 
